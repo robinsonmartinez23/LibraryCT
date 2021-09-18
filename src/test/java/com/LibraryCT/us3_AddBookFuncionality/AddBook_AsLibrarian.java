@@ -1,17 +1,17 @@
 package com.LibraryCT.us3_AddBookFuncionality;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
+import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import utilities.CustomMethods;
+import utilities.TestBase;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.concurrent.TimeUnit;
 
-public class AddBook_AsLibrarian {
+public class AddBook_AsLibrarian extends TestBase {
     /**
      * As a librarian, I should be able to add a new user.
      * AC #1:
@@ -22,31 +22,34 @@ public class AddBook_AsLibrarian {
      * And librarian click save changes Then verify a new book is added
      */
 
-    public static void main(String[] args) throws Exception {
-        WebDriverManager.chromedriver().setup();
-        WebDriver driver = new ChromeDriver();
-        driver.manage().window().maximize();
-        driver.get("http://library2.cybertekschool.com/login.html");
+    @Test
+    public void addBookFun() throws Exception {
 
         ArrayList<String> usernames = new ArrayList<>(Arrays.asList("librarian21@library","librarian53@library"));
+    // Navigate to url
+        driver.get("http://library2.cybertekschool.com/login.html");
 
         for (int i = 0; i < usernames.size(); i++) {
+            CustomMethods.takeSnapShot(driver, "C://Users/Robin.000/OneDrive/Fotos/Selenium ScrShot/LibraryCT/AddBookFunctionality/"+usernames.get(i)+"/1_login_page.png");
     // Provide credentials
-            driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS) ;
-            CustomMethods.takeSnapShot(driver, "C://Users/Robin.000/OneDrive/Fotos/Selenium ScrShot/LibraryCT/AddBookFunctionality/"+usernames.get(i).substring(0,11)+"/1_login_page.png");
             WebElement loginBox = driver.findElement(By.xpath("//*[@id='inputEmail']"));
             loginBox.sendKeys(usernames.get(i));
             WebElement passwordBox = driver.findElement(By.xpath("//*[@id='inputPassword']"));
             passwordBox.sendKeys("Sdet2022*");
-            CustomMethods.takeSnapShot(driver, "C://Users/Robin.000/OneDrive/Fotos/Selenium ScrShot/LibraryCT/AddBookFunctionality/"+usernames.get(i).substring(0,11)+"/2_credentials.png");
+            CustomMethods.takeSnapShot(driver, "C://Users/Robin.000/OneDrive/Fotos/Selenium ScrShot/LibraryCT/AddBookFunctionality/"+usernames.get(i)+"/2_credentials.png");
+    // Getting access to Main site
             driver.findElement(By.xpath("//button[@type='submit']")).click();
-    // Click on Books Module button xpath //span[@class='title' and text()='Books']
-            Thread.sleep(4000);
+            WebDriverWait wait = new WebDriverWait(driver,30);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@id=\"tbl_books_processing\"]/div/span")));
+            CustomMethods.takeSnapShot(driver, "C://Users/Robin.000/OneDrive/Fotos/Selenium ScrShot/LibraryCT/AddBookFunctionality/"+usernames.get(i)+"/3_accessGranted.png");
+    // Getting access to Books module xpath //span[@class='title' and text()='Books']
             driver.findElement(By.xpath("//span[@class='title' and text()='Books']")).click();
-            CustomMethods.takeSnapShot(driver, "C://Users/Robin.000/OneDrive/Fotos/Selenium ScrShot/LibraryCT/AddBookFunctionality/"+usernames.get(i).substring(0,11)+"/3_BookMng.png");
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@id=\"tbl_books_processing\"]/div/span")));
+            CustomMethods.takeSnapShot(driver, "C://Users/Robin.000/OneDrive/Fotos/Selenium ScrShot/LibraryCT/AddBookFunctionality/"+usernames.get(i)+"/4_BookMng.png");
     // Click on Add Book button xpath //div[1]/span/a
             driver.findElement(By.xpath("//div[1]/span/a")).click();
-            CustomMethods.takeSnapShot(driver, "C://Users/Robin.000/OneDrive/Fotos/Selenium ScrShot/LibraryCT/AddBookFunctionality/"+usernames.get(i).substring(0,11)+"/4_AddBookWin.png");
+            wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"ajax\"]/div/div/div")));
+            CustomMethods.takeSnapShot(driver, "C://Users/Robin.000/OneDrive/Fotos/Selenium ScrShot/LibraryCT/AddBookFunctionality/"+usernames.get(i)+"/5_AddBookWin.png");
     // Book Name info xpath //*[@id="add_book_form"]/div[1]/div/div[1]/div[1]/div/input
             WebElement nameBox = driver.findElement(By.xpath("//*[@id=\"add_book_form\"]/div[1]/div/div[1]/div[1]/div/input"));
             nameBox.sendKeys("El chavo");
@@ -65,16 +68,16 @@ public class AddBook_AsLibrarian {
                                     "Roberto Gomez Bolaños and whom is adopted by members" +
                                     " of an small condominium facing very fun situation every" +
                                     " single day");
-            CustomMethods.takeSnapShot(driver, "C://Users/Robin.000/OneDrive/Fotos/Selenium ScrShot/LibraryCT/AddBookFunctionality/"+usernames.get(i).substring(0,11)+"/5_NewBookInfo.png");
+            CustomMethods.takeSnapShot(driver, "C://Users/Robin.000/OneDrive/Fotos/Selenium ScrShot/LibraryCT/AddBookFunctionality/"+usernames.get(i)+"/6_NewBookInfo.png");
     // Save changes button xpath //button[@class='btn btn-primary']
             driver.findElement(By.xpath("//button[@class='btn btn-primary']")).click();
-            Thread.sleep(2000);
-            CustomMethods.takeSnapShot(driver, "C://Users/Robin.000/OneDrive/Fotos/Selenium ScrShot/LibraryCT/AddBookFunctionality/"+usernames.get(i).substring(0,11)+"/6_NewBookAdded.png");
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@id=\"ajax\"]/div/div/div")));
+            CustomMethods.takeSnapShot(driver, "C://Users/Robin.000/OneDrive/Fotos/Selenium ScrShot/LibraryCT/AddBookFunctionality/"+usernames.get(i)+"/7_NewBookAdded.png");
     // Drop down button xpath //*[@id="navbarDropdown"]
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@id=\"toast-container\"]/div/div")));
             driver.findElement(By.xpath("//*[@id=\"navbarDropdown\"]")).click();
     // Log out button cssSelector a.dropdown-item
             driver.findElement(By.cssSelector("a.dropdown-item")).click();
         }
-        driver.close();
     }
 }

@@ -1,6 +1,7 @@
 package com.LibraryCT.us7_FilterFuncionality;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -9,13 +10,16 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import utilities.CustomMethods;
+import utilities.TestBase;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.concurrent.TimeUnit;
 
-public class DramaSelection {
-    public static void main(String[] args) throws Exception {
+public class DramaSelection extends TestBase {
+
+    @Test
+    public void filterFuntionality() throws Exception {
         /**
          * As a user, I want to filter book categories.
          *
@@ -26,9 +30,6 @@ public class DramaSelection {
          * Then verify user is able to select the “Drama” option
          */
 
-        WebDriverManager.chromedriver().setup();
-        WebDriver driver = new ChromeDriver();
-        driver.manage().window().maximize();
         driver.get("http://library2.cybertekschool.com/login.html");
 
         ArrayList<String> usernames = new ArrayList<>(Arrays.asList("librarian21@library", "librarian53@library", "student66@library","student67@library","student68@library"));
@@ -65,8 +66,6 @@ public class DramaSelection {
             driver.findElement(By.xpath("//*[@id=\"navbarDropdown\"]")).click();
     // Log out button cssSelector a.dropdown-item
             driver.findElement(By.cssSelector("a.dropdown-item")).click();
-
         }
-    driver.close();
     }
 }

@@ -1,20 +1,21 @@
 package com.LibraryCT.us6_SelectStatusFuntionality;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
+import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import utilities.CustomMethods;
+import utilities.TestBase;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.concurrent.TimeUnit;
 
-public class SelectStatus {
-    public static void main(String[] args) throws Exception {
+public class SelectStatus extends TestBase {
+
+    @Test
+    public void selectStatusAsLibrarian() throws Exception {
         /**
          * As a librarian, I want to select user groups.
          *
@@ -24,9 +25,7 @@ public class SelectStatus {
          * And librarian click user group dropdown
          * Then verify librarian have 3 options
          */
-        WebDriverManager.chromedriver().setup();
-        WebDriver driver = new ChromeDriver();
-        driver.manage().window().maximize();
+
         driver.get("http://library2.cybertekschool.com/login.html");
 
         ArrayList<String> usernames = new ArrayList<>(Arrays.asList("librarian21@library","librarian53@library"));
@@ -56,8 +55,6 @@ public class SelectStatus {
             driver.findElement(By.xpath("//*[@id=\"navbarDropdown\"]")).click();
     // Log out button cssSelector a.dropdown-item
             driver.findElement(By.cssSelector("a.dropdown-item")).click();
-
         }
-        driver.close();
     }
 }

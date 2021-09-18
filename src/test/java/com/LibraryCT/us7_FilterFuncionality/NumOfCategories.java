@@ -1,6 +1,7 @@
 package com.LibraryCT.us7_FilterFuncionality;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -8,14 +9,17 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import utilities.CustomMethods;
+import utilities.TestBase;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-public class NumOfCategories {
-    public static void main(String[] args) throws Exception {
+public class NumOfCategories extends TestBase {
+
+    @Test
+    public void filterFuntionality() throws Exception {
         /**
          * As a user, I want to filter book categories.
          *
@@ -25,11 +29,8 @@ public class NumOfCategories {
          * And user click book category dropdown
          * Then verify there are 21 options
          */
-        WebDriverManager.chromedriver().setup();
-        WebDriver driver = new ChromeDriver();
-        driver.manage().window().maximize();
-        driver.get("http://library2.cybertekschool.com/login.html");
 
+        driver.get("http://library2.cybertekschool.com/login.html");
         ArrayList<String> usernames = new ArrayList<>(Arrays.asList("librarian21@library", "librarian53@library", "student66@library", "student67@library", "student68@library"));
 
         for (int i = 0; i < usernames.size(); i++) {
@@ -72,6 +73,5 @@ public class NumOfCategories {
             driver.findElement(By.cssSelector("a.dropdown-item")).click();
 
         }
-    driver.close();
     }
 }
