@@ -17,6 +17,7 @@ public class SelectUserGroup extends TestBase {
     @Test
     public void selectUserGroupFun() throws Exception {
         /**
+         * User Story 5
          * As a librarian, I want to select user groups
          *
          * AC #1:
@@ -31,29 +32,29 @@ public class SelectUserGroup extends TestBase {
         ArrayList<String> usernames = new ArrayList<>(Arrays.asList("librarian21@library","librarian53@library"));
 
         for (int i = 0; i < usernames.size(); i++) {
-    // Provide credentials
+            // Provide credentials
             driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS) ;
-            CustomMethods.takeSnapShot(driver, "C://Users/Robin.000/OneDrive/Fotos/Selenium ScrShot/LibraryCT/SelectUserGroupFunctionality/"+usernames.get(i).substring(0,11)+"/1_login_page.png");
+            CustomMethods.takeSnapShot(driver, "C://Users/Robin.000/OneDrive/Fotos/Selenium ScrShot/LibraryCT/SelectUserGroupFunctionality/"+usernames.get(i).substring(0,11)+"/1_login_pagee_"+usernames.get(i)+".png");
             WebElement loginBox = driver.findElement(By.xpath("//*[@id='inputEmail']"));
             loginBox.sendKeys(usernames.get(i));
             WebElement passwordBox = driver.findElement(By.xpath("//*[@id='inputPassword']"));
             passwordBox.sendKeys("Sdet2022*");
-            CustomMethods.takeSnapShot(driver, "C://Users/Robin.000/OneDrive/Fotos/Selenium ScrShot/LibraryCT/SelectUserGroupFunctionality/"+usernames.get(i).substring(0,11)+"/2_credentials.png");
+            CustomMethods.takeSnapShot(driver, "C://Users/Robin.000/OneDrive/Fotos/Selenium ScrShot/LibraryCT/SelectUserGroupFunctionality/"+usernames.get(i).substring(0,11)+"/2_credentialse_"+usernames.get(i)+".png");
             driver.findElement(By.xpath("//button[@type='submit']")).click();
-    // Wait till element comes up and screen shoot Main page
+            // Wait till element comes up and screen shoot Main page
             WebDriverWait wait = new WebDriverWait(driver,30);
             wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[@href=\"#users\"]")));
-            CustomMethods.takeSnapShot(driver, "C://Users/Robin.000/OneDrive/Fotos/Selenium ScrShot/LibraryCT/SelectUserGroupFunctionality/"+usernames.get(i).substring(0,11)+"/3_Main_page.png");
-    // Click on user module and go to User Management wait till User Group comes up
+            CustomMethods.takeSnapShot(driver, "C://Users/Robin.000/OneDrive/Fotos/Selenium ScrShot/LibraryCT/SelectUserGroupFunctionality/"+usernames.get(i).substring(0,11)+"/3_Main_pagee_"+usernames.get(i)+".png");
+            // Click on user module and go to User Management wait till User Group comes up
             driver.findElement(By.xpath("//a[@href=\"#users\"]")).click();
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@id=\"tbl_users_processing\"]/div/span")));
-            CustomMethods.takeSnapShot(driver, "C://Users/Robin.000/OneDrive/Fotos/Selenium ScrShot/LibraryCT/SelectUserGroupFunctionality/"+usernames.get(i).substring(0,11)+"/4_UserMng_page.png");
-    // Click on User Group and verify dropdown menu
+            CustomMethods.takeSnapShot(driver, "C://Users/Robin.000/OneDrive/Fotos/Selenium ScrShot/LibraryCT/SelectUserGroupFunctionality/"+usernames.get(i).substring(0,11)+"/4_UserMng_pagee_"+usernames.get(i)+".png");
+            // Click on User Group and verify dropdown menu
             driver.findElement(By.xpath("//*[@id=\"user_groups\"]")).click();
-            CustomMethods.takeSnapShot(driver, "C://Users/Robin.000/OneDrive/Fotos/Selenium ScrShot/LibraryCT/SelectUserGroupFunctionality/"+usernames.get(i).substring(0,11)+"/5_DropDown.png");
-    // Dropdown profile button xpath //*[@id="navbarDropdown"]
+            CustomMethods.takeSnapShot(driver, "C://Users/Robin.000/OneDrive/Fotos/Selenium ScrShot/LibraryCT/SelectUserGroupFunctionality/"+usernames.get(i).substring(0,11)+"/5_DropDowne_"+usernames.get(i)+".png");
+            // Dropdown profile button xpath //*[@id="navbarDropdown"]
             driver.findElement(By.xpath("//*[@id=\"navbarDropdown\"]")).click();
-    // Log out button cssSelector a.dropdown-item
+            // Log out button cssSelector a.dropdown-item
             driver.findElement(By.cssSelector("a.dropdown-item")).click();
 
         }

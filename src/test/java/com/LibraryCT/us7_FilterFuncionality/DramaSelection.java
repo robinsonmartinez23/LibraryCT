@@ -21,6 +21,7 @@ public class DramaSelection extends TestBase {
     @Test
     public void filterFuntionality() throws Exception {
         /**
+         * User Story 7
          * As a user, I want to filter book categories.
          *
          * AC #2:
@@ -35,36 +36,36 @@ public class DramaSelection extends TestBase {
         ArrayList<String> usernames = new ArrayList<>(Arrays.asList("librarian21@library", "librarian53@library", "student66@library","student67@library","student68@library"));
 
         for (int i = 0; i < usernames.size(); i++) {
-    // Provide credentials
+            // Provide credentials
             driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-            CustomMethods.takeSnapShot(driver, "C://Users/Robin.000/OneDrive/Fotos/Selenium ScrShot/LibraryCT/FilterFunctionality/DramaOption/" + usernames.get(i) + "/1_login_page.png");
+            CustomMethods.takeSnapShot(driver, "C://Users/Robin.000/OneDrive/Fotos/Selenium ScrShot/LibraryCT/FilterFunctionality/DramaOption/" + usernames.get(i) + "/1_login_pagee_"+usernames.get(i)+".png");
             WebElement loginBox = driver.findElement(By.xpath("//*[@id='inputEmail']"));
             loginBox.sendKeys(usernames.get(i));
             WebElement passwordBox = driver.findElement(By.xpath("//*[@id='inputPassword']"));
             passwordBox.sendKeys("Sdet2022*");
-            CustomMethods.takeSnapShot(driver, "C://Users/Robin.000/OneDrive/Fotos/Selenium ScrShot/LibraryCT/FilterFunctionality/DramaOption/" + usernames.get(i) + "/2_credentials.png");
+            CustomMethods.takeSnapShot(driver, "C://Users/Robin.000/OneDrive/Fotos/Selenium ScrShot/LibraryCT/FilterFunctionality/DramaOption/" + usernames.get(i) + "/2_credentialse_"+usernames.get(i)+".png");
             driver.findElement(By.xpath("//button[@type='submit']")).click();
-    // Wait till element comes up and screen shoot Main page
+            // Wait till element comes up and screen shoot Main page
             WebDriverWait wait = new WebDriverWait(driver,30);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@id=\"tbl_books_processing\"]/div/span")));
-            CustomMethods.takeSnapShot(driver, "C://Users/Robin.000/OneDrive/Fotos/Selenium ScrShot/LibraryCT/FilterFunctionality/DramaOption/"+usernames.get(i)+"/3_Main_page.png");
-    // Click books module
+            CustomMethods.takeSnapShot(driver, "C://Users/Robin.000/OneDrive/Fotos/Selenium ScrShot/LibraryCT/FilterFunctionality/DramaOption/"+usernames.get(i)+"/3_Main_pagee_"+usernames.get(i)+".png");
+            // Click books module
             WebElement booksModule = driver.findElement(By.xpath("//span[contains(text(),'Books')]"));
             booksModule.click();
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@id=\"tbl_books_processing\"]/div/span")));
-            CustomMethods.takeSnapShot(driver, "C://Users/Robin.000/OneDrive/Fotos/Selenium ScrShot/LibraryCT/FilterFunctionality/DramaOption/"+usernames.get(i)+"/4_BookMng.png");
-    // Click books category
+            CustomMethods.takeSnapShot(driver, "C://Users/Robin.000/OneDrive/Fotos/Selenium ScrShot/LibraryCT/FilterFunctionality/DramaOption/"+usernames.get(i)+"/4_BookMnge_"+usernames.get(i)+".png");
+            // Click books category
             WebElement booksCategory = driver.findElement(By.xpath("//*[@id=\"book_categories\"]"));
             booksCategory.click();
-            CustomMethods.takeSnapShot(driver, "C://Users/Robin.000/OneDrive/Fotos/Selenium ScrShot/LibraryCT/FilterFunctionality/DramaOption/"+usernames.get(i)+"/5_Dropdown.png");
-    // Select Drama category
+            CustomMethods.takeSnapShot(driver, "C://Users/Robin.000/OneDrive/Fotos/Selenium ScrShot/LibraryCT/FilterFunctionality/DramaOption/"+usernames.get(i)+"/5_Dropdowne_"+usernames.get(i)+".png");
+            // Select Drama category
             WebElement categories = driver.findElement(By.cssSelector("#book_categories"));
             Select drama = new Select(categories);
             drama.selectByValue("6");
-            CustomMethods.takeSnapShot(driver, "C://Users/Robin.000/OneDrive/Fotos/Selenium ScrShot/LibraryCT/FilterFunctionality/DramaOption/"+usernames.get(i)+"/6_DramaChoice.png");
-    // Dropdown profile button xpath //*[@id="navbarDropdown"]
+            CustomMethods.takeSnapShot(driver, "C://Users/Robin.000/OneDrive/Fotos/Selenium ScrShot/LibraryCT/FilterFunctionality/DramaOption/"+usernames.get(i)+"/6_DramaChoicee_"+usernames.get(i)+".png");
+            // Dropdown profile button xpath //*[@id="navbarDropdown"]
             driver.findElement(By.xpath("//*[@id=\"navbarDropdown\"]")).click();
-    // Log out button cssSelector a.dropdown-item
+            // Log out button cssSelector a.dropdown-item
             driver.findElement(By.cssSelector("a.dropdown-item")).click();
         }
     }
